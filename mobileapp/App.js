@@ -1,11 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, PixelRatio } from 'react-native';
+import Devices from './screens/devices.js';
+import {LinearGradient} from 'expo-linear-gradient';
+
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <LinearGradient 
+      style = {styles.container} 
+      colors = {["#9887FF", "#6892FF" , "#68B7FF"]}
+      locations = {[0 ,.5, 1]}
+      >
+      <Devices/>
       <StatusBar style="auto" />
+    </LinearGradient>
     </View>
   );
 }
@@ -13,7 +22,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    width : "100%",
+    // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
