@@ -13,6 +13,7 @@ export default function App() {
       locations = {[0 ,.5, 1]}
       >
       <Devices/>
+      <Remote style={styles.remote}/>
       <StatusBar style="auto" />
     </LinearGradient>
     </View>
