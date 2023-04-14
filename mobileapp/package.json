@@ -13,13 +13,9 @@
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-native": "0.71.6",
-<<<<<<< HEAD
-    "expo-linear-gradient": "~12.1.2"
-=======
-    "react-native-linear-gradient": "^2.6.2",
+    "expo-linear-gradient": "~12.1.2",
     "react-native-svg": "^13.4.0",
     "react-native-svg-uri": "^1.2.3"
->>>>>>> a814bde3be0d88cbdfc6c782c7c32be433ab73fb
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
