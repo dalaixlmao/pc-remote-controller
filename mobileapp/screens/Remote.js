@@ -63,11 +63,6 @@ export default function Remote() {
 }
 
 const styles = StyleSheet.create({
-  remote: {
-    flex: 1,
-    justifyContent:'center',
-    alignItems:'center',
-  },
   control:{
     top:400,
     height:266,
@@ -90,8 +85,6 @@ const styles = StyleSheet.create({
     backgroundColor:"white",
     borderRadius:200,
     opacity:0.2,
-
-
   },
 
   shutdown:{
@@ -113,5 +106,4 @@ const styles = StyleSheet.create({
     right:30,
     top:44,
   }
-
 });
