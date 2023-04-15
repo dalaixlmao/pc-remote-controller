@@ -1,79 +1,86 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react'
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Devices = () => {
 
-  const handlePress = () => {
-    console.log("button pressed");
+  const handlePress = (key) => {
+    console.log(`Button ${key} pressed`);
   }
 
   return (
     <View style={styles.container}>
-      <Text style = {styles.heading}>Devices</Text>
-      <Text style = {styles.subHeading}>Available devices</Text>
-      <FlatList
-        style = {{marginTop : 10,}}
-        data={deviceList}
-        renderItem = {
-            ({item}) => 
-            <TouchableOpacity onPress = {handlePress}>
-            <Text style={styles.item}>{item.key}</Text>
+      <LinearGradient 
+        style={styles.gradientContainer} 
+        colors={["#9887FF", "#6892FF" , "#68B7FF"]}
+        locations={[0, .5, 1]}
+      >
+        <Text style={styles.subHeading}>Available devices:</Text>
+        <FlatList
+          style={{ marginTop: 10 }}
+          data={DEVICE_LIST}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => handlePress(item.key)}>
+              <Text style={styles.item}>{item.key}</Text>
             </TouchableOpacity>
-        }
-      />
-      <StatusBar style="auto" />
+          )}
+        />
+        <StatusBar style="auto" />
+      </LinearGradient>
     </View>
   );
 }
 
-
-const deviceList = [
-          {key: 'device 1'},
-          {key: 'device 2'},
-          {key: 'device 3'},
-          {key: 'device 4'},
-          {key: 'device 5'},
-        ];
+const DEVICE_LIST = [
+  { key: 'Suryansh Singh Bisht' },
+  { key: 'Abhinav Aryan' },
+  { key: 'Sahajpreet Singh' },
+  { key: 'Nishkarsh Jain' },
+  { key: 'Parth Mittal' },
+];
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: 22,
-    margin : 0,
+    width: "100%",
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 0,
   },
-  heading : {
-    height : 105,
-    marginTop : 20,
-    fontSize : 40,
-    top : 50,
-    textAlign : "center",
-    fontFamily: 'Inter',
+  gradientContainer: {
+    flex: 1,
+    width: "100%",
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 0,
+  },
+  heading: {
+    height: 105,
+    marginTop: 20,
+    fontSize: 40,
+    top: 50,
+    textAlign: "center",
     fontStyle: 'normal',
     fontWeight: 700,
-    color : "white",
+    color: "white",
   },
-  subHeading : {
-    width : "50%",
-    top : 30,
-    right : "10%",
-    // right : "75%",
-    // backgroundColor : "blue",
-    fontSize : 25,
-    fontFamily: 'Inter',
+  subHeading: {
+    width: "50%",
+    top: 30,
+    right: "10%",
+    fontSize: 20,
     fontStyle: 'normal',
     fontWeight: 600,
-    color : "white",
+    color: "white",
+    marginBottom: 50,
   },
   item: {
-    // padding: 10,
-    // top : 9,
-    marginTop : 9,
+    marginTop: 9,
     fontSize: 18,
-    color : 'white',
-    borderBottomWidth : 1,
-    borderBottomColor : 'white',
-    // height: 44,
+    color: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: 'white',
   },
 });
 

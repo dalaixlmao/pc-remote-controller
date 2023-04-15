@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, PixelRatio } from 'react-native';
 
 const Dropdown = (deviceList) => {
   return (
-    <View style = styles.container>
+    <View style = {styles.container}>
       <Text style = "auto">Devices</Text>
       <StatusBar style="auto" />
     </View>

@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import {LinearGradient} from 'expo-linear-gradient';
 
 const LoginPage = () => {
   [username, setUsername] = useState(' ');  
@@ -17,8 +18,11 @@ const LoginPage = () => {
 
   return (
     <View style={styles.container}>
-      <Text style = {styles.heading}>Log in</Text>
-
+    <LinearGradient 
+      style = {styles.container} 
+      colors = {["#9887FF", "#6892FF" , "#68B7FF"]}
+      locations = {[0 ,.5, 1]}
+      >
       <View style={styles.inputView}>
       <Text style = {styles.label}>Username</Text>
         <TextInput
@@ -46,8 +50,8 @@ const LoginPage = () => {
       <TouchableOpacity style={styles.loginBtn} onPress = {handleLogin}>
         <Text style={styles.loginText}>Log in</Text> 
       </TouchableOpacity>
-
-      <StatusBar style="auto" />
+    <StatusBar style="auto" />
+    </LinearGradient>
     </View>
   );
 }
@@ -56,15 +60,15 @@ const LoginPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // margin : 0,
+    width : "100%",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   heading : {
     height : 105,
-    marginTop : 50,
     marginBottom : 50,
     top : 50,
     textAlign : "center",
-    fontFamily: 'Inter',
     fontStyle: 'normal',
     fontSize : 50,
     fontWeight: '700',
@@ -90,7 +94,7 @@ const styles = StyleSheet.create({
   forgotPassword: {
     fontWeight: '400',
     color : 'white',
-    left : 150,
+    left : 100,
     fontSize : 15,
   },
   loginText : {
