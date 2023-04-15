@@ -2,19 +2,39 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+
 
 const LoginPage = () => {
-  [username, setUsername] = useState(' ');  
-  [password, setPassword] = useState(' '); 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-
+  const navigation = useNavigation();
   const handleForgotPassword = () => {
     console.log('forgot password');
   } 
 
   const handleLogin = () => {
-    console.log( `user with username ${username} logs in with password ${password}`);
+    axios.post('http://10.61.52.72:5001/login', {
+      username: username,
+      password: password
+    })
+    .then((response) => {
+      const responseJson = response.data;
+      console.log(responseJson)
+      if (responseJson.status === 'success') {
+        navigation.navigate('Devices', {data: responseJson.data});
+      } else {
+        console.log(responseJson.message);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
+
 
   return (
     <View style={styles.container}>
