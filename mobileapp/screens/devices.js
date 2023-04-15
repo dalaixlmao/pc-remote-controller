@@ -2,13 +2,17 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react'
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 
 const Devices = () => {
+  const navigation = useNavigation();
   const [devices, setDevices] = useState([]);
   const { data } = route.params;
   console.log(data);
   useEffect(() => {
-    axios.get('http://10.61.52.72:5001/getpcs/')
+    axios.post('http://10.61.52.72:5001/getpcs/', {
+      sessionid: data.sessionid
+    })
       .then(response => {
         setDevices(response.data);
       })
@@ -18,7 +22,7 @@ const Devices = () => {
   }, []);
 
   const handlePress = (key) => {
-    console.log(`Button ${key} pressed`);
+    navigation.navigate('Remote', {data:{sessionis: data.sessionid, device: key}});
   }
 
   return (
@@ -33,8 +37,8 @@ const Devices = () => {
           style={{ marginTop: 10 }}
           data={devices}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => handlePress(item.key)}>
-              <Text style={styles.item}>{item.key}</Text>
+            <TouchableOpacity onPress={() => handlePress(item)}>
+              <Text style={styles.item}>{item}</Text>
             </TouchableOpacity>
           )}
         />
