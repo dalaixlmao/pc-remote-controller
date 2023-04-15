@@ -4,6 +4,18 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native
 import { LinearGradient } from 'expo-linear-gradient';
 
 const Devices = () => {
+  const [devices, setDevices] = useState([]);
+  const { data } = route.params;
+  console.log(data);
+  useEffect(() => {
+    axios.get('http://10.61.52.72:5001/getpcs/')
+      .then(response => {
+        setDevices(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
   const handlePress = (key) => {
     console.log(`Button ${key} pressed`);
@@ -19,7 +31,7 @@ const Devices = () => {
         <Text style={styles.subHeading}>Available devices:</Text>
         <FlatList
           style={{ marginTop: 10 }}
-          data={DEVICE_LIST}
+          data={devices}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => handlePress(item.key)}>
               <Text style={styles.item}>{item.key}</Text>
